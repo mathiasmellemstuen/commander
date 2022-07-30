@@ -1,4 +1,4 @@
-# commander
+# Commander
 
 Install this plugin with <a href="https://github.com/junegunn/vim-plug">vim-plug</a>: `Plug 'mathiasmellemstuen/commander`
 
