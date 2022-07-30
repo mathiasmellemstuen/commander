@@ -19,7 +19,7 @@ Example of some keybindings for this plugin:
 ```vim
 " Mapping commander run
 nnoremap <leader>1 <cmd>lua require"commander".run(1)<cr>
-nnoremap <leader>2<cmd>lua require"commander".run(2)<cr>
+nnoremap <leader>2 <cmd>lua require"commander".run(2)<cr>
 nnoremap <leader>3 <cmd>lua require"commander".run(3)<cr>
 
 " Mapping commander edit
