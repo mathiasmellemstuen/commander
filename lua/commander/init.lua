@@ -55,7 +55,7 @@ function out.run(id)
 		vim.cmd("term")
 		
 		if current_os_is_windows() then 
-			vim.api.nvim_input("istart " .. file_path .. "<cr>")
+			vim.api.nvim_input("icall " .. file_path .. "<cr>")
 		else
 			vim.api.nvim_input("ichmod +x " .. file_path .. "<cr>./" .. file_path .. "<cr>")
 		end
