@@ -3,6 +3,10 @@ local out = {}
 --Getting the current working directory of the terminal. This is where the .commander folder will be created.
 local current_working_dir=io.popen"cd":read'*l'
 
+function current_os_is_windows()
+	if os.get() == "windows" then return true else return false end
+end
+
 function file_exists(file_path)
 	local file = io.open(file_path, "r")
 	if file ~=nil then io.close(file) return true else return false end
@@ -17,18 +21,12 @@ function create_file(file_path)
 	io.close(file)
 end
 
-function get_file_lines(file_path)
-	local lines = {}
-
-	for line in io.lines(file_path) do 
-		lines[#lines + 1] = line
-	end
-
-	 return lines
-end
-
 function create_file_path_from_id(id)
-	return ".commander/" .. tostring(id) .. ".vim-commander"
+	if current_os_is_windows() then 
+		return ".commander/" .. tostring(id) .. ".bat"
+	else
+		return ".commander/" .. tostring(id) .. ".sh"
+	end 
 end
 
 function out.edit(id)
@@ -51,20 +49,17 @@ function out.run(id)
 	
 	-- Running content in the current file with the id. Display message if the file does not exist.
 	if file_exists(file_path) then 
-		local lines = get_file_lines(file_path)
-
-		-- String containing every command with a <cr> in between each line. This is for executing each line separete.
-		local commands_combined = "i"
-		
-		for k, v in pairs(lines) do
-			commands_combined = commands_combined .. v .. "<cr>"
-		end
-		commands_combined = commands_combined .. "exit<cr>"
 		
 		-- Splitting screen, opening terminal and executing the commands in the terminal
 		vim.cmd("vs")
 		vim.cmd("term")
-		vim.api.nvim_input(commands_combined)
+		
+		if current_os_is_windows() then 
+			vim.api.nvim_input("istart " .. file_path .. "<cr>")
+		else
+			vim.api.nvim_input("ichmod +x " .. file_path .. "<cr>./" .. file_path .. "<cr>")
+		end
+
 	else
 		print("commander: Command at id: " .. id .. " is not set up for this project. Run require\"commander\".edit(" .. id .. ") to set up the command script for this project.")
 	end
