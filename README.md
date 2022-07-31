@@ -1,6 +1,6 @@
 # Commander
 
-Install this plugin with <a href="https://github.com/junegunn/vim-plug">vim-plug</a>: `Plug 'mathiasmellemstuen/commander`
+Install this plugin with <a href="https://github.com/junegunn/vim-plug">vim-plug</a>: `Plug 'mathiasmellemstuen/commander'`
 
 Commander is a neovim plugin that makes it easy to quickly call project dependent scripts from neovim with key mappings. The plugin contains two functions:
 - edit
