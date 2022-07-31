@@ -4,7 +4,7 @@ local out = {}
 local current_working_dir=io.popen"cd":read'*l'
 
 function current_os_is_windows()
-	if package.config:sub(1,1) == "\\\\" then return true else return false end
+	if package.config:sub(1,1) == "\\" then return true else return false end
 end
 
 function file_exists(file_path)
