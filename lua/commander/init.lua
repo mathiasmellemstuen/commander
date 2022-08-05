@@ -56,8 +56,10 @@ function out.run(id)
 		
 		if current_os_is_windows() then 
 			vim.api.nvim_input("icall " .. file_path .. "<cr>")
+			vim.api.nvim_input("<C-\><C-n>")
 		else
 			vim.api.nvim_input("ichmod +x " .. file_path .. "<cr>./" .. file_path .. "<cr>")
+			vim.api.nvim_input("<C-\><C-n>")
 		end
 
 	else
